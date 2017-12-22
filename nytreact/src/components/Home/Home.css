@@ -15,10 +15,11 @@ h2,h4 {
 }
 .search {
 	border: 3px solid black;
-	width: 60%;
+	width: 40%;
 	margin-top: 20px; 
 	margin-left: auto;
 	margin-right: auto;
+	background-color: white;
 }
 
 form > *{
@@ -31,4 +32,8 @@ form > *{
 
 form > label {
 	margin-left: 45%;
+}
+
+body {
+	background-color: #0eef8e;
 }

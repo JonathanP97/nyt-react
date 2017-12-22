@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import "./Home.css";
+import Article from "../../components/Article";
 
 class Home extends Component {
   constructor(props) {
   	super(props);
 
     this.state = {
+      articles: [],
       topic: "",
       start: "",
       end: ""
@@ -32,6 +34,7 @@ class Home extends Component {
     // } 
     fetch(url).then(result => result.json()).then(result => {
       console.log(result);
+      this.setState({articles: result.response.docs})
     })
 
   }
@@ -68,9 +71,51 @@ class Home extends Component {
               </form>
             </div>
         </div>
+        <div className="display">
+          {this.state.articles.length ? (
+            <div>
+              <h4>Articles</h4>
+              {this.state.articles.map(article => {
+                return (
+                  <Article 
+                    key={article._id}
+                    headline={article.headline.main}
+                    author={article.byline.original}
+                    url={article.web_url}
+                  />
+                )
+              })}
+            </div>
+          ):(
+            <h4>No Articles Yet</h4>
+          )}
+        </div>
       </div>
   	);
   }
 }
 
 export default Home;
+
+
+
+
+
+// {this.state.books.length ? (
+//   <List>
+//     {this.state.books.map(book => {
+//       return (
+//         <ListItem key={book._id}>
+//           <a href={"/books/" + book._id}>
+//             <strong>
+//               {book.title} by {book.author}
+//             </strong>
+//           </a>
+//           <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+//         </ListItem>
+//       );
+//     })}
+//   </List>
+// ) : (
+//   <h3>No Results to Display</h3>
+// )}
