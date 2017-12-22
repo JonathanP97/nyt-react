@@ -25,14 +25,14 @@ class Home extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.topic);
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=cecdb7f428d1453f9c06b3d679b784eb";
+    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=cecdb7f428d1453f9c06b3d679b784eb&";
     url += "q=" + this.state.topic;
     // if(this.state.start) {
     //   url+= 
     // } 
-    fetch(url).then(result => {
+    fetch(url).then(result => result.json()).then(result => {
       console.log(result);
-    });
+    })
 
   }
 
