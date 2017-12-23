@@ -29,9 +29,10 @@ class Home extends Component {
     console.log(this.state.topic);
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=cecdb7f428d1453f9c06b3d679b784eb&";
     url += "q=" + this.state.topic;
-    // if(this.state.start) {
-    //   url+= 
-    // } 
+    
+    if(this.state.start) url+= "&begin_date=" + this.state.start; 
+    if(this.state.end) url+= "&end_date=" + this.state.end;
+    console.log(url);
     fetch(url).then(result => result.json()).then(result => {
       console.log(result);
       this.setState({articles: result.response.docs})
@@ -79,9 +80,11 @@ class Home extends Component {
                 return (
                   <Article 
                     key={article._id}
+                    id={article._id}
                     headline={article.headline.main}
-                    author={article.byline.original}
+                    author={article.byline ? article.byline.original : "No author found"}
                     url={article.web_url}
+                    date={article.pub_date}
                   />
                 )
               })}

@@ -10,13 +10,21 @@
 .article > p {
 	margin: 0;
 	font-size: 70%;
+	padding: 8px;
 }
 
 strong {
 	display: inline;
 	font-size: 110%;
+	text-align: center;
+	margin: 5px;
 }
+
 .article > a {
 	right: 0;
 	font-size: 70%;
+}
+
+.article > button {
+	margin-left: 40%;
 }
