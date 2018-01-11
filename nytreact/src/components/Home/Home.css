@@ -30,11 +30,13 @@ form > *{
 	margin-bottom: 5px;
 }
 
-form > label {
-	margin-left: 45%;
+form > p {
+	text-align: center;
+	margin: 2px;
 }
 
 body {
 	background-color: #0eef8e;
+	margin: 0;
 }
 

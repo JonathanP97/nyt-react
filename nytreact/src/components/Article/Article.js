@@ -10,7 +10,7 @@ class Article extends Component {
 	saveArticle(id, event) {
 		console.log(id);
 	}
-
+	2
 	render() {
 		return (
 			<div className="article">

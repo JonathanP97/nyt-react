@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Home.css";
 import Article from "../../components/Article";
+import API from "../../utils/API.js";
 
 class Home extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Home extends Component {
 
     this.state = {
       articles: [],
-      topic: "",
+      topic: "", 
       start: "",
       end: ""
     };
@@ -16,28 +17,30 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    API.search("california")
+      .then(res => this.setState({articles: res.data.response.docs}))
+      .catch(err => console.log(err));
+  }
+
   handleChange(event) {
     const name = event.target.name;
 
     this.setState({
-      [name]: event.target.value
+      [name]: event.target.value.trim()
     })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.topic);
-    var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=cecdb7f428d1453f9c06b3d679b784eb&";
-    url += "q=" + this.state.topic;
+    var url = this.state.topic;
     
     if(this.state.start) url+= "&begin_date=" + this.state.start; 
     if(this.state.end) url+= "&end_date=" + this.state.end;
-    console.log(url);
-    fetch(url).then(result => result.json()).then(result => {
-      console.log(result);
-      this.setState({articles: result.response.docs})
-    })
-
+    // console.log(url);
+    API.search(url)
+      .then(res => this.setState({articles: res.data.response.docs}))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -50,19 +53,19 @@ class Home extends Component {
             <h4>Search</h4>
             <div>
               <form onSubmit={this.handleSubmit}>
-                <label>Topic</label>
+                <p>Topic</p>
                 <input 
                   type="text"
                   name="topic"
                   onChange={this.handleChange}
                 />
-                <label>Start Year</label>
+                <p>Start Year</p>
                 <input 
                   type="text"
                   name="start"
                   onChange={this.handleChange}
                 />
-                <label>End Year</label>
+                <p>End Year</p>
                 <input 
                   type="text"
                   name="end"
@@ -99,26 +102,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-
-
-
-
-// {this.state.books.length ? (
-//   <List>
-//     {this.state.books.map(book => {
-//       return (
-//         <ListItem key={book._id}>
-//           <a href={"/books/" + book._id}>
-//             <strong>
-//               {book.title} by {book.author}
-//             </strong>
-//           </a>
-//           <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-//         </ListItem>
-//       );
-//     })}
-//   </List>
-// ) : (
-//   <h3>No Results to Display</h3>
-// )}
