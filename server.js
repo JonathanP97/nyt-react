@@ -14,7 +14,7 @@ var app = express();
 mongoose.Promise = Promise;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytreact";
 
-mongoose.connect(process.env.MONGODB_URI, function (error) {
+mongoose.connect(MONGODB_URI, function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
