@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI, function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
-W
+
 .catch(function(error) {
 	console.log('this is error: ', error);
 })
