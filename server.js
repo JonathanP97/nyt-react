@@ -6,11 +6,10 @@ var cheerio = require('cheerio');
 var request = require('request');
 var axios = require('axios');
 var morgan = require('morgan');
-var db = require('./models'); 
+var db = require('./models');
 
-var PORT = 3000; 
+var PORT = 3000;
 var app = express();
-
 
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/nytreact", {
@@ -20,25 +19,20 @@ mongoose.connect("mongodb://localhost/nytreact", {
 	console.log('this is error: ', error);
 })
 
-
-app.use(express.static('static'));
-app.use(morgan('dev'));
-
-app.listen(PORT, () => {
-	console.log("Running on port: " + PORT);
-})
+app.use(express.static(path.join(__dirname, '/react-test/build/')));
 
 app.post("/api/articles", (req,res) => {
 	db.Article.create()
 });
 
 app.get("/api/articles", (req,res) => {
-	console.log("here");
-	res.send("blah");
+
 });
 
-app.get("*", (req,res) =>{
-	res.sendFile(__dirname + '/nytreact/public/index.html');
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/react-test/build/index.html'));
 });
 
-
+app.listen(PORT, () => {
+    console.log('Running on port: ' + PORT);
+});
