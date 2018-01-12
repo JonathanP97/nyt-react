@@ -19,10 +19,6 @@ mongoose.connect(process.env.MONGODB_URI, function (error) {
     else console.log('mongo connected');
 });
 
-.catch(function(error) {
-	console.log('this is error: ', error);
-})
-
 app.use(express.static(path.join(__dirname, '/react-test/build/')));
 
 app.post("/api/articles", (req,res) => {
