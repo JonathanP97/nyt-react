@@ -7,4 +7,4 @@ export default {
 	search: function(query) {
 		return axios.get(base + key + query);
 	}
-};
+}; 
