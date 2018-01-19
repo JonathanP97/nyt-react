@@ -20,6 +20,7 @@ mongoose.connect(MONGODB_URI, function (error) {
 });
 
 app.use(express.static(path.join(__dirname, '/react-test/build/')));
+
 app.post("/api/articles", (req,res) => {
 	db.Article.create()
 });
