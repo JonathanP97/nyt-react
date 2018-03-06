@@ -1,14 +1,27 @@
+body {
+	background-color: #1C1F1C;
+	margin: 0;
+	/*font-family: 'Titillium Web', sans-serif;*/
+	font-family: 'Source Sans Pro', sans-serif;
+	/*font-family: 'Lato', sans-serif;*/
+	/*font-family: 'Open Sans', sans-serif;*/
+	/*font-family: 'Roboto', sans-serif;	*/
+}
+
 h2,h4 {
 	margin: 0;
 	padding: 0;
 	text-align: center;
 	padding: 10px;
+
+}
+h4 {
+	font-weight: 700;
 }
 
 .header {
 	background-color:#009152 ;
 	height: 60px;
-	border-bottom: 3px solid black; 
 }
 
 .search > h4 {
@@ -17,11 +30,36 @@ h2,h4 {
 
 .search {
 	border: 3px solid black;
-	width: 40%;
+	width: 350px;
 	margin-top: 20px; 
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #92c8e5;
+}
+
+#form-header {
+	padding: 30px;
+	font-weight: 600;
+	font-size: 110%;
+	background-color: #92c8e5;
+}
+
+#border-bottom {
+	border-bottom: 2.5px solid #1C3D69;
+	width: 240px;
+	margin-left: auto;
+	margin-right: auto;
+	opacity: 0.7;
+}
+
+form {
+	margin-top: 25px;
+}
+
+input {
+	background-color: #C2FFF7;
+	/*border: 1.6px solid #1C3D69;*/
+	border : solid 2px rgba(28, 61, 105, 0.68);
 }
 
 form > *{
@@ -30,6 +68,7 @@ form > *{
 	margin-right: auto; 
 	padding: 5px;
 	margin-bottom: 5px;
+	font-weight: 300;
 }
 
 form > p {
@@ -37,9 +76,15 @@ form > p {
 	margin: 2px;
 }
 
-body {
-	background-color: #0eef8e;
-	margin: 0;
+#date-container {
+	text-align: center;
+}
+
+#date-input{
+	display: inline-block;
+	text-align: center;
+	margin:4px;
+	width: 40px;
 }
 
 .footer {
@@ -61,6 +106,7 @@ body {
 
 button {
 	font-size: 75%;
-	padding: 5px;
-	background-color: #fcfa7e;
+	padding: 8px;
+	background-color: rgba(0, 145, 82, 0.65);
+	border: 2px solid #3678CF;
 } 

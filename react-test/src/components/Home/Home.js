@@ -9,9 +9,15 @@ class Home extends Component {
 
     this.state = {
       articles: [],
-      topic: "", 
-      start: "",
-      end: ""
+      topic: "",
+      start: false,
+      start_year: "",
+      start_month: "",
+      start_day: "",
+      end: true,
+      end_year: "",
+      end_month: "",
+      end_day: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,10 +39,14 @@ class Home extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log(this.state);
     var url = this.state.topic;
-    
-    if(this.state.start) url+= "&begin_date=" + this.state.start; 
-    if(this.state.end) url+= "&end_date=" + this.state.end;
+    var start_url = this.state.start_year + this.state.start_month + this.state.start_day;
+    var end_url = this.state.end_year + this.state.end_month + this.state.end_day;
+    console.log(start_url);
+    console.log(end_url);
+    if(this.state.start) url+= "&begin_date=" + start_url; 
+    if(this.state.end) url+= "&end_date=" + end_url;
     // console.log(url);
     API.search(url)
       .then(res => this.setState({articles: res.data.response.docs}))
@@ -50,29 +60,70 @@ class Home extends Component {
           <h2>Nyt React</h2>
         </div>
         <div className="search">
-            <h4>Search</h4>
+            <h4 id="form-header">Search</h4>
+            <div id="border-bottom"></div>
             <div>
               <form onSubmit={this.handleSubmit}>
-                <p>Topic</p>
                 <input 
                   type="text"
                   name="topic"
+                  placeholder="topic"
                   onChange={this.handleChange}
                 />
                 <p>Start Year</p>
-                <input 
-                  type="text"
-                  name="start"
-                  placeholder="yyyy/mm/dd"
-                  onChange={this.handleChange}
-                />
+                {/*<input 
+                      type="text"
+                      name="start"
+                      placeholder="yyyy/mm/dd"
+                      onChange={this.handleChange}
+                />*/}
+                <div id="date-container">
+                  <input
+                    id="date-input" 
+                    type="text"
+                    name="start_year"
+                    placeholder="yyyy"
+                    onChange={this.handleChange}
+                  />                
+                  <input 
+                    id="date-input" 
+                    type="text"
+                    name="start_month"
+                    placeholder="mm"
+                    onChange={this.handleChange}
+                  />            
+                  <input 
+                    id="date-input" 
+                    type="text"
+                    name="start_day"
+                    placeholder="dd"
+                    onChange={this.handleChange}
+                  />
+                </div>
                 <p>End Year</p>
-                <input 
-                  type="text"
-                  name="end"
-                  placeholder="yyyy/mm/dd"
-                  onChange={this.handleChange}
-                />
+                <div id="date-container">
+                  <input
+                    id="date-input" 
+                    type="text"
+                    name="end_year"
+                    placeholder="yyyy"
+                    onChange={this.handleChange}
+                  />                
+                  <input 
+                    id="date-input" 
+                    type="text"
+                    name="end_month"
+                    placeholder="mm"
+                    onChange={this.handleChange}
+                  />            
+                  <input 
+                    id="date-input" 
+                    type="text"
+                    name="end_day"
+                    placeholder="dd"
+                    onChange={this.handleChange}
+                  />
+                </div>
                 <button>Search</button>
               </form>
             </div>
