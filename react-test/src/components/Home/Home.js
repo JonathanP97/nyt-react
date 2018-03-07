@@ -10,12 +10,8 @@ class Home extends Component {
     this.state = {
       articles: [],
       topic: "",
-      start_year: "",
-      start_month: "",
-      start_day: "",
-      end_year: "",
-      end_month: "",
-      end_day: ""
+      state_date: "",
+      end_date: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +25,8 @@ class Home extends Component {
 
   handleChange(event) {
     const name = event.target.name;
-
+    console.log(name);
+    console.log(event.target.value.length);
     this.setState({
       [name]: event.target.value.trim()
     })
@@ -40,18 +37,16 @@ class Home extends Component {
     console.log(this.state);
     var url = this.state.topic;
 
-    if(this.state.start_year && this.state.start_month && this.state.start_day) {
-      var start_url = this.state.start_year + this.state.start_month + this.state.start_day;
-      url+= "&begin_date=" + start_url; 
+    if(this.state.start_date) {
+      var start_url = this.state.start_date;
+      url+= "&start_date=" + start_url; 
     }
 
-    if(this.state.end_year && this.state.end_month && this.state.end_day) {
-      var end_url = this.state.end_year + this.state.end_month + this.state.end_day;
+    if(this.state.end_date) {
+      var end_url = this.state.end_date;
       url+= "&end_date=" + end_url; 
     }
 
-    console.log(start_url);
-    console.log(end_url);
     console.log(url);
 
     API.search(url)
@@ -77,53 +72,19 @@ class Home extends Component {
                   onChange={this.handleChange}
                 />
                 <p>Start Year</p>
-                <div id="date-container">
-                  <input
-                    id="date-input" 
-                    type="text"
-                    name="start_year"
-                    placeholder="yyyy"
-                    onChange={this.handleChange}
-                  />                
-                  <input 
-                    id="date-input" 
-                    type="text"
-                    name="start_month"
-                    placeholder="mm"
-                    onChange={this.handleChange}
-                  />            
-                  <input 
-                    id="date-input" 
-                    type="text"
-                    name="start_day"
-                    placeholder="dd"
-                    onChange={this.handleChange}
-                  />
-                </div>
+                <input 
+                  id="date-input"
+                  type="date"
+                  name="start_date"
+                  onChange={this.handleChange}                  
+                />
                 <p>End Year</p>
-                <div id="date-container">
-                  <input
-                    id="date-input" 
-                    type="text"
-                    name="end_year"
-                    placeholder="yyyy"
-                    onChange={this.handleChange}
-                  />                
-                  <input 
-                    id="date-input" 
-                    type="text"
-                    name="end_month"
-                    placeholder="mm"
-                    onChange={this.handleChange}
-                  />            
-                  <input 
-                    id="date-input" 
-                    type="text"
-                    name="end_day"
-                    placeholder="dd"
-                    onChange={this.handleChange}
-                  />
-                </div>
+                <input 
+                  id="date-input"
+                  type="date"
+                  name="end_date"
+                  onChange={this.handleChange}                  
+                />
                 <button>Search</button>
               </form>
             </div>

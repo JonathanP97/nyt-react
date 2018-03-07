@@ -11,11 +11,14 @@ class Article extends Component {
 	}
 
 	componentDidMount() {
-		var date = this.props.date;
+		if(this.props.date) {
+			var date = this.props.date;
+			var seperate = date.slice(0, 10).replace(/-/g, " ");
+			this.setState({date: seperate});			
+		} else {
+			this.setState({date: 'date error'});
+		}
 
-		// /SomEThing/gi --> for case sensitive
-		var seperate = date.slice(0, 10).replace(/-/g, " ");
-		this.setState({date: seperate});
 	}
 
 	saveArticle(id, event) {

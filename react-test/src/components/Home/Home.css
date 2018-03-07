@@ -75,15 +75,12 @@ form > p {
 	margin: 2px;
 }
 
-#date-container {
-	text-align: center;
-}
-
 #date-input{
-	display: inline-block;
 	text-align: center;
-	margin:4px;
-	width: 40px;
+	margin: 5 2 10 2;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .footer {
