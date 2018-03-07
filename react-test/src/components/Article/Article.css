@@ -5,31 +5,31 @@
 }
 
 .article {
-	border: 3px solid black;
-	margin-bottom:20px;
+	border: 3.5px solid rgba(0, 145, 82, 0.7);
+	margin-bottom: 20px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 55%;
-	/*background-color: #c3f7d4;*/
+	width: 350px;
+	padding: 18px;
+	margin: 20px;
 	background-color: #C2FFF7;
+	opacity: 0.9;
+	text-align: center;
+	display: inline-block;
 }
 
 .article > p {
 	margin: 0;
-	font-size: 70%;
-	padding: 8px;
-}
-
-strong {
-	display: inline;
-	font-size: 110%;
-	text-align: center;
-	margin: 5px;
+	font-size: 80%;
+	font-weight: 400;
+	padding-top: 8px;
+	padding-bottom: 2px;
 }
 
 .article > a {
-	right: 0;
-	font-size: 70%;
+	color: #FF5757;
+	text-decoration: none;
+	font-weight: 800;
 }
 
 .article > button {

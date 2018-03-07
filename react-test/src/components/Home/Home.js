@@ -129,9 +129,9 @@ class Home extends Component {
             </div>
         </div>
         <div className="display">
-          {this.state.articles.length ? (
-            <div>
-              <h4>Articles</h4>
+          {this.state.articles.length ? 
+            <div className="ignore">
+              <h3>Articles</h3>
               {this.state.articles.map(article => {
                 return (
                   <Article 
@@ -145,9 +145,9 @@ class Home extends Component {
                 )
               })}
             </div>
-          ):(
-            <h4>No Articles Yet</h4>
-          )}
+          :
+            <h3>No Articles Yet</h3>
+          }
         </div>
         <div className="footer">
           <p>thanks for visiting</p>
