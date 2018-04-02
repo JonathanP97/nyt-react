@@ -9,7 +9,7 @@ class Home extends Component {
 
     this.state = {
       articles: [],
-      topic: "",
+      topic: "california",
       state_date: "",
       end_date: ""
     };
@@ -25,8 +25,6 @@ class Home extends Component {
 
   handleChange(event) {
     const name = event.target.name;
-    console.log(name);
-    console.log(event.target.value.length);
     this.setState({
       [name]: event.target.value.trim()
     })
@@ -90,10 +88,12 @@ class Home extends Component {
             </div>
         </div>
         <div className="display">
-          {this.state.articles.length ? 
+          {this.state.articles ? 
             <div className="ignore">
-              <h3>Articles</h3>
+              <h3>Articles about {this.state.topic}
+              </h3>
               {this.state.articles.map(article => {
+                // fix author and uneccessary renders
                 return (
                   <Article 
                     key={article._id}
